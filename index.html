@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Form validation</title>
+
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<section class="profile">
+    <h1>My application</h1>
+    <form action="#" id="profile" class="form">
+        <p class="form__success-msg">Form doesn't contain errors</p>
+        <p class="form__error-msg">Form contains errors</p>
+
+        <label for="profile-name" >Name <span class="required">*</span></label>
+        <input
+                name="name"
+                id="profile-name"
+                placeholder="My name"
+                data-required
+                data-validator="letters"
+        />
+        <span class="form__comment">Only letters</span>
+
+        <label for="profile-age">Age</label>
+        <input
+                name="age"
+                id="profile-age"
+                placeholder="My age"
+                data-validator="number"
+                data-validator-min="0"
+                data-validator-max="100"
+        />
+        <span class="form__comment">Number from 0 to 100</span>
+
+        <label for="profile-phone">Phone number</label>
+        <input
+                name="phone"
+                id="profile-phone"
+                placeholder="My phone number"
+                data-validator="regexp"
+                data-validator-pattern="^\+1\d{10}$"
+        />
+        <span class="form__comment">+11234567890</span>
+
+        <label for="profile-number">Your favourite number</label>
+        <input
+                name="number"
+                id="profile-number"
+                placeholder="42?"
+                data-validator="number"
+        />
+
+        <label for="profile-comments">Comments</label>
+        <input
+                name="comments"
+                id="profile-comments"
+        />
+
+        <button>Save</button>
+    </form>
+</section>
+
+<script src="./script.js"></script>
+<script>
+    // Вызов валидатора формы
+    validateForm({
+        formId: 'profile',
+        formValidClass: 'form_valid',
+        formInvalidClass: 'form_invalid',
+
+        inputErrorClass: 'input_error'
+    });
+</script>
+</body>
+</html>
